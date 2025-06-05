@@ -1,22 +1,20 @@
 const mysql = require('mysql');
-const url = require('url');
 
 let config;
 
 if (process.env.DB_URL) {
-  const dbUrl = url.parse(process.env.DB_URL);
-  const [user, password] = dbUrl.auth.split(':');
+  const dbUrl = new URL(process.env.DB_URL);
 
   config = {
     connectionLimit: 10,
     host: dbUrl.hostname,
-    user,
-    password,
-    database: dbUrl.pathname.replace('/', ''), // remove leading slash
+    user: dbUrl.username,
+    password: dbUrl.password,
+    database: dbUrl.pathname.substring(1), // remove leading '/'
     port: dbUrl.port || 3306
   };
 } else {
-  // fallback for local development
+  // Local fallback
   config = {
     connectionLimit: 10,
     host: process.env.DB_HOST || 'localhost',
