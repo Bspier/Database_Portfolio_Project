@@ -50,15 +50,9 @@ app.post('/add-employee-ajax', function(req, res)
 {
     let data = req.body;
 
-    let e_id = parseInt(data.e_id);
-    if(isNaN(e_id))
-    {
-        e_id = 'NULL'
-    }
-
-    query1 = `INSERT INTO Employees (e_name, e_email)
-    VALUES ('${data.e_name}', '${data.e_email}');`;
-    db.pool.query(query1, function(error, rows, fields){
+    let query1 = `INSERT INTO Employees (e_name, e_email) VALUES (?, ?)`;
+    let inserts = [data.e_name, data.e_email];
+    db.pool.query(query1, inserts, function(error, rows, fields) {
         if (error) {
             console.log(error);
             res.sendStatus(400);
