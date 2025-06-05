@@ -47,13 +47,13 @@ app.get('/employees', function(req, res)
 });
 
 // add employee
-app.post('/add-employee-ajax', function(req, res) {
+app.post('/add-employee-ajax', function(req, res)
+{
     let data = req.body;
-    console.log("Received data:", data);
 
     const query1 = `INSERT INTO Employees (e_name, e_email) VALUES (?, ?)`;
     console.log(rows); // error checking 
-    db.pool.query(query1, [data.e_name, data.e_email], function (error, rows, fields) {
+    db.pool.query(query1, [data.e_name, data.e_email], function (error, inserResult) {
         if (error) {
             console.log(error);
             res.sendStatus(400);
@@ -61,14 +61,12 @@ app.post('/add-employee-ajax', function(req, res) {
         else
         {
             query2 = `SELECT * FROM Employees;`;
-            db.pool.query(query2, function(error, rows, fields) {
-                
+            db.pool.query(query2, function(error, selectRows, fields) {
                 if (error) {
-
-                    console.log(error);
-                    res.sendStatus(400);
+                    console.error("Select error:", error);
+                    res.sendStatus(500);
                 } else {
-                    res.send(rows);
+                    res.send(selectRows);
                 }
             });
         }
