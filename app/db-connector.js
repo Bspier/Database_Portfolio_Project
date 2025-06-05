@@ -3,8 +3,8 @@ const url = require('url');
 
 let config;
 
-if (process.env.DATABASE_URL) {
-  const dbUrl = url.parse(process.env.DATABASE_URL);
+if (process.env.DB_URL) {
+  const dbUrl = url.parse(process.env.DB_URL);
   const [user, password] = dbUrl.auth.split(':');
 
   config = {
