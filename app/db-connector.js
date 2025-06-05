@@ -1,4 +1,4 @@
-const mysql = require('mysq12');
+const mysql = require('mysql2');
 const url = require('url');
 
 let config;
