@@ -47,9 +47,9 @@ app.get('/employees', function(req, res)
 });
 
 // add employee
-app.post('/add-employee-ajax', function(req, res)
-{
+app.post('/add-employee-ajax', function(req, res) {
     let data = req.body;
+    console.log("Received data:", data);
 
     const query1 = `INSERT INTO Employees (e_name, e_email) VALUES (?, ?)`;
     console.log(rows); // error checking 
