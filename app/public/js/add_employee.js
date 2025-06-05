@@ -42,6 +42,7 @@ addEmployeeForm.addEventListener("submit", function (e) {
 
 
 addRowToTable = (data) => {
+    console.log("Row data:", data) //error checking
 
     let currentTable = document.getElementById("employee-table");
 

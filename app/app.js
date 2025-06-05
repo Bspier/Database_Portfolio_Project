@@ -39,8 +39,8 @@ app.get('/employees', function(req, res)
         
     }
 
+    console.log(rows); //error checking
     db.pool.query(query1, function(error, rows, fields){
-        
         res.render('employees', {data: rows})
     })
 });
@@ -50,9 +50,9 @@ app.post('/add-employee-ajax', function(req, res)
 {
     let data = req.body;
 
-    let query1 = `INSERT INTO Employees (e_name, e_email) VALUES (?, ?)`;
-    let inserts = [data.e_name, data.e_email];
-    db.pool.query(query1, inserts, function(error, rows, fields) {
+    const query1 = `INSERT INTO Employees (e_name, e_email) VALUES (?, ?)`;
+    console.log(rows); // error checking 
+    db.pool.query(query1, [data.e_name, data.e_email], function (error, rows, fields) {
         if (error) {
             console.log(error);
             res.sendStatus(400);
