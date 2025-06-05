@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: cs340-database-app
+    env: docker
+    region: oregon
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DB_HOST
+        value: your-db-host.render.com
+      - key: DB_USER
+        value: your-db-username
+      - key: DB_PASSWORD
+        value: your-db-password
+      - key: DB_NAME
+        value: your-db-name

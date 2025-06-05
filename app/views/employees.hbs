@@ -1,0 +1,75 @@
+<h1>Employees List</h1>
+<p>This page lists all the employees currently within the database.</p>
+
+
+<table id="employee-table">
+
+    <thead>
+
+        <tr>
+            <th>Employee ID</th>
+            <th>Employee Name</th>
+            <th>Employee Email</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {{#each data}}
+        <tr data-value={{this.e_id}}>
+            <td>{{this.e_id}}</td>
+            <td>{{this.e_name}}</td>
+            <td>{{this.e_email}}</td>
+            <td><button onclick="deleteEmployee({{this.e_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_employee.js"></script>
+
+
+<h2>Adding New Employee</h2>
+<p>To add a new employee, please enter their information below and click Submit.</p>
+<form id="add-employee-form-ajax">
+    <label for="input-name">Name: </label>
+    <input type="text" name="input-name" id="input-name">
+    
+    <label for="input-email">Email: </label>
+    <input type="text" name="input-email" id="input-email">
+
+    <input type="submit">
+</form>
+
+<script src="./js/add_employee.js"></script>
+
+<h2>Search Employees by ID</h2>
+<p>Search employees by ID using the field below. Partial IDs work.</p>
+<form id="search-employee-html" method='GET' action='/employees'>
+    <label for="input-id">Search by Employee ID: </label>
+    <input type="text" name="e_id" id="input-id-html-search">
+    
+    <input type="submit">
+    <a href='/employees'><button>Reset</button></a>
+</form>
+
+<h2>Updating An Employee's Email Address</h2>
+<p>To update an employee's email, select their name from the drop-down menu on the left and enter their new email address on the right</p>
+<form id="update-employee-form-ajax">
+
+    <label for="input-name">Name: </label>
+    <select name="input-name" id="idSelect">
+        <option value="default">Select an Employee</option>
+        {{#each data}}
+        <option value="{{this.e_id}}">{{this.e_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-email">Email: </label>
+    <input type="text" name="input-email" id="input-email-update">
+
+    <input type="submit">
+
+</form>
+
+<script src="./js/update_employee.js"></script>

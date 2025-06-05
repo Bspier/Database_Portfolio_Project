@@ -1,0 +1,72 @@
+<h1>Transactions List</h1>
+<p>This page lists the log of repairs that have been done in the shop.</p>
+
+<table id="transactions-table">
+
+    <thead>
+
+        <tr>
+            <th>Transaction ID</th>
+            <th>Transaction Amount</th>
+            <th>Transaction Date</th>
+            <th>Vehicle ID</th>
+            <th>Employee ID</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {{#each data}}
+        <tr data-value={{this.t_id}}>
+            <td>{{this.t_id}}</td>
+            <td>{{this.t_amount}}</td>
+            <td>{{this.t_date}}</td>
+            <td>{{this.t_v_id}}</td>
+            <td>{{this.t_e_id}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<h2>Adding New Transaction</h2>
+<p>To add a new Transaction, please enter their information below and click Submit.</p>
+
+<form id="add-transaction-form-ajax">
+    <label for="input-t_amount">Transaction Total</label>
+    <input type="number" name="input-t_amount" id="input-t_amount">
+
+    <label for="input-t_date">Transaction Date</label>
+    <input type="date" name="input-t_date" id="input-t_date">
+
+    <label for="input-t_v_id">Vehicle ID: </label>
+    <select name="input-t_v_id" id="input-t_v_id">
+        <option value="default">Select a Vehicle</option>
+        {{#each vehicles}}
+        <option value="{{this.v_id}}">{{this.Vehicle}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-t_e_id">Employee ID: </label>
+    <select name="input-t_e_id" id="input-t_e_id">
+        <option value="default">Select an Employee</option>
+        {{#each employees}}
+        <option value="{{this.e_id}}">{{this.e_name}}</option>
+        {{/each}}
+    </select>
+
+    <input type="submit">
+    <a href='/'><button>Reset</button></a>
+</form>
+
+<script src="./js/add_transaction.js"></script>
+
+<h2>Search for Transaction with the Transaction ID </h2>
+<p>Search Transaction by ID using the field below.</p>
+
+<form id="search-Transactions-html" method='GET' action='/'>
+    <label for="input-t_id">Search by Transaction ID: </label>
+    <input type="text" name="t_id" id="input-t_id-html-search">
+
+    <input type="submit">
+    <a href='/'><button>Reset</button></a>
+</form>

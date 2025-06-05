@@ -1,0 +1,78 @@
+<h1>Repairs List</h1>
+<p>This page lists all the repairs that can be selected from in the database.</p>
+
+
+<table id="repair-table">
+
+    <thead>
+
+        <tr>
+            <th>Repair ID</th>
+            <th>Task</th>
+            <th>Cost</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {{#each data}}
+        <tr data-value={{this.r_id}}>
+            <td>{{this.r_id}}</td>
+            <td>{{this.task}}</td>
+            <td>{{this.cost}}</td>
+            <td><button onclick="deleteRepair({{this.r_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_repair.js"></script>
+
+
+<h2>Adding New Repair</h2>
+<p>To add a new repair offered, please enter their information below and click Submit.</p>
+<form id="add-repair-form-ajax">
+    <label for="input-task">Task: </label>
+    <input type="text" name="input-task" id="input-task">
+
+    <label for="input-cost">Cost: </label>
+    <input type="number" name ="input-cost" id="input-cost" min="0">
+
+    <input type="submit">
+</form>
+
+<script src="./js/add_repair.js"></script>
+
+<h2>Search Repairs by ID</h2>
+<p>Search repairs by ID using the field below. Partial IDs work.</p>
+<form id="search-repair-html" method='GET' action='/repairs'>
+    <label for="input-id">Search by Repair ID: </label>
+    <input type="text" name="r_id" id="input-id-html-search">
+    
+    <input type="submit">
+    <a href='/repairs'><button>Reset</button></a>
+</form>
+
+<h2>Updating a Repair Task</h2>
+<p>To update the task of a repair, select the ID from the drop-down menu on the left and enter the new description on the right</p>
+<form id="update-repair-form-ajax">
+
+    <label for="input-id">ID: </label>
+    <select name="input-id" id="idSelect">
+        <option value="default">Select a Repair</option>
+        {{#each data}}
+        <option value="{{this.r_id}}">{{this.task}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-task">Task: </label>
+    <input type="text" name="input-task" id="input-task-update">
+
+    <label for="input-cost">Cost: </label>
+    <input type="number" name="input-cost" id="input-cost-update">
+
+    <input type="submit">
+
+</form>
+
+<script src="./js/update_repair.js"></script>

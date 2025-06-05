@@ -1,0 +1,94 @@
+<h1>Vehicles List</h1>
+<p>This page lists all the vehicless currently within the database.</p>
+
+
+<table id="vehicle-table">
+
+    <thead>
+
+        <tr>
+            <th>Vehicle ID</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Color</th>
+            <th>Year</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {{#each data}}
+        <tr data-value={{this.v_id}}>
+            <td>{{this.v_id}}</td>
+            <td>{{this.make}}</td>
+            <td>{{this.model}}</td>
+            <td>{{this.color}}</td>
+            <td>{{this.year}}</td>
+            <td><button onclick="deleteVehicle({{this.v_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_vehicle.js"></script>
+
+
+<h2>Adding New Vehicle</h2>
+<p>To add a new vehicle, please enter their information below and click Submit.</p>
+<form id="add-vehicle-form-ajax">
+    <label for="input-make">Make: </label>
+    <input type="text" name="input-make" id="input-make">
+    
+    <label for="input-model">Model: </label>
+    <input type="text" name="input-model" id="input-model">
+
+    <label for="input-color">Color: </label>
+    <input type="text" name="input-color" id="input-color">
+
+    <label for="input-year">Year: </label>
+    <input type="number" name="input-year" id="input-year">
+
+    <input type="submit">
+</form>
+
+<script src="./js/add_vehicle.js"></script>
+
+<h2>Search Vehicles by ID</h2>
+<p>Search vehicless by ID using the field below. Partial IDs work.</p>
+<form id="search-vehicle-html" method='GET' action='/vehicles'>
+    <label for="input-id">Search by Vehicle ID: </label>
+    <input type="text" name="v_id" id="input-id-html-search">
+    
+    <input type="submit">
+    <a href='/vehicles'><button>Reset</button></a>
+</form>
+
+<h2>Updating A Vehicles Information</h2>
+<p>To update aa vehicle's information, select their ID from the drop-down menu on the left and enter the new info on the right</p>
+<form id="update-vehicle-form-ajax">
+
+    <label for="input-id">ID: </label>
+    <select name="input-id" id="idSelect">
+        <option value="default">Select a Vehicle</option>
+        {{#each data}}
+        <option value="{{this.v_id}}">{{this.v_id}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-make">Make: </label>
+    <input type="text" name="input-make" id="input-make-update">
+
+    <label for="input-model">Model: </label>
+    <input type="text" name="input-model" id="input-model-update">
+
+    <label for="input-color">Color: </label>
+    <input type="text" name="input-color" id="input-color-update">
+
+    <label for="input-year">Year: </label>
+    <input type="number" name="input-year" id="input-year-update">
+
+    <input type="submit">
+
+</form>
+
+<script src="./js/update_vehicle.js"></script>

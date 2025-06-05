@@ -1,0 +1,75 @@
+<h1>Customers List</h1>
+<p>This page lists all the customers currently within the database.</p>
+
+
+<table id="customer-table">
+
+    <thead>
+
+        <tr>
+            <th>Customer ID</th>
+            <th>Customer Name</th>
+            <th>Customer Email</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {{#each data}}
+        <tr data-value={{this.c_id}}>
+            <td>{{this.c_id}}</td>
+            <td>{{this.c_name}}</td>
+            <td>{{this.c_email}}</td>
+            <td><button onclick="deleteCustomer({{this.c_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_customer.js"></script>
+
+
+<h2>Adding New Customer</h2>
+<p>To add a new customer, please enter their information below and click Submit.</p>
+<form id="add-customer-form-ajax">
+    <label for="input-name">Name: </label>
+    <input type="text" name="input-name" id="input-name">
+    
+    <label for="input-email">Email: </label>
+    <input type="text" name="input-email" id="input-email">
+
+    <input type="submit">
+</form>
+
+<script src="./js/add_customer.js"></script>
+
+<h2>Search Customers by ID</h2>
+<p>Search customers by ID using the field below. Partial IDs work.</p>
+<form id="search-customer-html" method='GET' action='/customers'>
+    <label for="input-id">Search by Customer ID: </label>
+    <input type="text" name="c_id" id="input-id-html-search">
+    
+    <input type="submit">
+    <a href='/customers'><button>Reset</button></a>
+</form>
+
+<h2>Updating An Customer's Email Address</h2>
+<p>To update an customer's email, select their name from the drop-down menu on the left and enter their new email address on the right</p>
+<form id="update-customer-form-ajax">
+
+    <label for="input-name">Name: </label>
+    <select name="input-name" id="idSelect">
+        <option value="default">Select a Customer</option>
+        {{#each data}}
+        <option value="{{this.c_id}}">{{this.c_name}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-email">Email: </label>
+    <input type="text" name="input-email" id="input-email-update">
+
+    <input type="submit">
+
+</form>
+
+<script src="./js/update_customer.js"></script>

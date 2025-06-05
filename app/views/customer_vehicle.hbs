@@ -1,0 +1,54 @@
+<h1>Customer_Vehicle List</h1>
+<p>This page lists who owns which vehicles that are currently within the database.</p>
+
+
+<table id="customer-vehicle-table">
+
+    <thead>
+
+        <tr>
+            <th>Customer Veehicle ID</th>
+            <th>Customer ID</th>
+            <th>Vehicle ID</th>
+            <th>Delete</th>
+        </tr>
+    
+    </thead>
+
+    <tbody>
+        {{#each data}}
+        <tr data-value={{this.intersect_id}}>
+            <td>{{this.intersect_id}}</td>
+            <td>{{this.c_id}}</td>
+            <td>{{this.v_id}}</td>
+            <td><button onclick="deleteCustomerVehicle({{this.intersect_id}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="./js/delete_customer_vehicle.js"></script>
+
+<h2>Adding New Customer Vehicle Relation</h2>
+<p>Please choose a Customer ID and Vehicle ID to add to the Customer Vehicle list and click submit</p>
+
+<form id="add-intersect-form-ajax">
+    <label for="input-customer">Customer: </label>
+    <select name="input-customer" id="input-customer">
+        <option value="">Select a Customer</option>
+        {{#each customers}}
+        <option value="{{this.c_id}}">{{this.c_name}}</option>
+        {{/each}}
+    </select>
+    
+    <label for="input-vehicle">Vehicle: </label>
+    <select name="input-vehicle" id="input-vehicle">
+        <option value="">Select a Vehicle</option>
+        {{#each vehicles}}
+        <option value="{{this.v_id}}">{{this.Vehicle}}</option>
+        {{/each}}
+    </select>
+
+    <input type="submit">
+    <a href='/customer_vehicle'><button>Reset</button></a>
+</form>
+<script src="./js/add_customer_vehicle.js"></script>

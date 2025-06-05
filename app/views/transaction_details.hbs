@@ -1,0 +1,68 @@
+<h1>Transaction Details</h1>
+<p>This page lists all the Transactions Details currently within the database.</p>
+
+
+<table id="transaction-detail-table">
+
+    <thead>
+
+        <tr>
+            <th>Transaction Details ID</th>
+            <th>Transaction ID</th>
+            <th>Repair ID</th>
+            <th>Repair Cost</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {{#each data}}
+        <tr data-value={{this.transactionDetailsID}}>
+            <td>{{this.transactionDetailsID}}</td>
+            <td>{{this.transactionsID}}</td>
+            <td>{{this.repairID}}</td>
+            <td>{{this.repairCost}}</td>            
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<pre>
+    {{transaction_map}}
+</pre>
+
+
+<h2>Adding New Transaction Details</h2>
+<p>To add new transaction details please enter the information below and click Submit.</p>
+<form id="add-transaction-details-form-ajax">
+    <label for="input-transactionsID">Transaction ID: </label>
+    <select name="input-transactionsID" id="input-transactionsID">
+        <option value="">Select a Transaction ID</option>
+        {{#each transactions}}
+        <option value="{{this.t_id}}">{{this.t_id}}</option> <!-- second value could be this.transactionsID -->
+        {{/each}}
+    </select>
+    
+    <label for="input-repairID">Repair: </label>
+    <select name="input-repairID" id="input-repairID">
+    <option value="">Select a Repair</option>
+        {{#each repairs}}
+        <option value="{{this.r_id}}">{{this.Repair}}</option>
+        {{/each}}
+    </select>    
+
+    <input type="submit">
+    <a href='/transaction_details'><button>Reset</button></a>
+</form>
+
+<script src="./js/add_transaction_details.js"></script>
+
+<h2>Search for Transaction Details with the Transaction ID </h2>
+<p>Search Transaction Details by ID using the field below.</p>
+<form id="search-Transaction-Details-html" method='GET' action='/transaction_details'>
+    <label for="input-transactionsID">Search by Transaction ID: </label>
+    <input type="text" name="transactionsID" id="input-transactionsID-html-search">
+    
+    <input type="submit">
+    <a href='/transaction_details'><button>Reset</button></a>
+</form>
+
