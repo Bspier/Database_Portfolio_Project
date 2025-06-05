@@ -21,6 +21,9 @@ app.set('view engine', '.hbs');
 //routes
 // Eployees Entity CRUD
 // return employee
+
+console.log("DB_URL:", process.env.DB_URL);
+
 app.get('/employees', function(req, res)
 {
     //Query1
