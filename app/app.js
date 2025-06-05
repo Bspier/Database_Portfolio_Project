@@ -39,9 +39,10 @@ app.get('/employees', function(req, res)
         
     }
 
-    console.log(rows); //error checking
+
     db.pool.query(query1, function(error, rows, fields){
         res.render('employees', {data: rows})
+        console.log(rows); //error checking
     })
 });
 
