@@ -6,7 +6,7 @@ app.use(express.static('public'));
 
 
 const PORT = process.env.PORT || 3000;
-
+const path = require('path');
 //database
 var db = require('./db-connector');
 
@@ -14,6 +14,7 @@ var db = require('./db-connector');
 const { engine } = require('express-handlebars');
 var exphbs = require('express-handlebars');
 app.engine('.hbs', engine({extname: ".hbs"}));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', '.hbs');
 //app.use(express.static('back_end/public'));
 
